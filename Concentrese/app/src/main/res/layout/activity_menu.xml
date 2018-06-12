@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Menu"
+    android:background="@color/azulfondo">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        android:layout_weight="1"
+        android:src="@drawable/logonommbre" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/azulbarra1">
+
+        <ImageView
+            android:id="@+id/imgjugar"
+            android:layout_width="218dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:onClick="go"
+            android:src="@drawable/pruebalol" />
+
+        <Button
+            android:id="@+id/btnjugar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/jugar"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:onClick="go"
+            android:background="@color/azulbarra1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/azulbarra2">
+
+        <ImageView
+            android:id="@+id/imgconfiguracion"
+            android:layout_width="219dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:onClick="Enviar"
+            android:src="@drawable/trofeo" />
+
+        <Button
+            android:id="@+id/btnconfiguracion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/puntaje"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:onClick="Enviar"
+            android:textColor="#000"
+            android:background="@color/azulbarra2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:background="@color/azulbarra3">
+
+        <ImageView
+            android:id="@+id/imgpuntuacion"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:onClick="ir"
+            android:src="@drawable/confi" />
+
+        <Button
+            android:id="@+id/btnpuntuacion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/confi"
+            android:onClick="ir"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:background="@color/azulbarra3"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

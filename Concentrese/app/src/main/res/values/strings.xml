@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Consentrese</string>
+    <string name="jugar">Jugar</string>
+    <string name="puntaje">Puntuación</string>
+    <string name="confi">Configuración</string>
+    <string name="salir">Salir</string>
+</resources>
