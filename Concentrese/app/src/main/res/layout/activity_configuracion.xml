@@ -64,21 +64,25 @@
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/rbtnFacil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:text="Facil"/>
+                    android:text="Facil"
+                    android:textColor="#000" />
 
                 <RadioButton
+                    android:id="@+id/rbtnMedio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000"
-                    android:text="Medio"/>
+                    android:text="Medio"
+                    android:textColor="#000" />
+
                 <RadioButton
+                    android:id="@+id/rbtnDificil"
                     android:layout_width="match_parent"
-                    android:textColor="#000"
                     android:layout_height="wrap_content"
-                    android:text="Dificil"/>
+                    android:text="Dificil"
+                    android:textColor="#000" />
 
             </RadioGroup>
 
