@@ -12,8 +12,6 @@ public class GestorDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Constants.CREATE_TABLE_PUNTUACION);
-        db.execSQL(Constants.CREATE_TABLE_TIEMPO);
-        db.execSQL(Constants.CREATE_TABLE_PREFERENCIAS);
 
     }
 

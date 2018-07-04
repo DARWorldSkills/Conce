@@ -4,4 +4,8 @@
     <string name="puntaje">Puntuación</string>
     <string name="confi">Configuración</string>
     <string name="salir">Salir</string>
+    <string name="jugador1">Jugador 1</string>
+    <string name="jugador2">Jugador 2</string>
+    <string name="ok">OK</string>
+    <string name="ingresejugadores">Ingrese jugadores</string>
 </resources>
