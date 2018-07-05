@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.RadioButton;
 
 public class Configuracion extends AppCompatActivity {
-    RadioButton rbtnFacil,rbtnMedio,rbtnDificil, rbtnTiempo, rbtnPuntuacion;
-
-    public static int nivel=4;
+    RadioButton rbtnTiempo, rbtnPuntuacion;
     SharedPreferences jugar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,23 +20,11 @@ public class Configuracion extends AppCompatActivity {
     }
 
     private void inizialite() {
-        rbtnFacil = findViewById(R.id.rbtnFacil);
-        rbtnMedio = findViewById(R.id.rbtnMedio);
-        rbtnDificil = findViewById(R.id.rbtnDificil);
+        rbtnTiempo = findViewById(R.id.rbtnTiempo);
+        rbtnPuntuacion = findViewById(R.id.rbtnPuntuacion);
     }
 
     public void inputData(){
-        int tmp1 = jugar.getInt("nivel",4);
-        if (tmp1 == 4){
-            rbtnFacil.setChecked(true);
-        }
-        if (tmp1 == 6){
-            rbtnMedio.setChecked(true);
-        }
-        if (tmp1 == 8){
-            rbtnDificil.setChecked(true);
-        }
-
         int tmp2 = jugar.getInt("modo", 1);
 
         if (tmp2 == 1){
@@ -50,19 +36,7 @@ public class Configuracion extends AppCompatActivity {
 
     }
 
-    public int input_dificulty(){
-        int tmp=0;
-        if (rbtnFacil.isChecked()){
-            tmp=4;
-        }
-        if (rbtnMedio.isChecked()){
-            tmp=6;
-        }
-        if (rbtnDificil.isChecked()){
-            tmp=8;
-        }
-        return tmp;
-    }
+
 
     public int input_mode_game(){
         int tmp=0;
@@ -84,10 +58,8 @@ public class Configuracion extends AppCompatActivity {
     public void salir(View view) {
         SharedPreferences jugar= getSharedPreferences("juegoC",MODE_PRIVATE);
         SharedPreferences.Editor editor = jugar.edit();
-        editor.putInt("nivel",input_dificulty());
         editor.putInt("modo",input_mode_game());
         editor.commit();
-        nivel=input_dificulty();
 
         finish();
     }

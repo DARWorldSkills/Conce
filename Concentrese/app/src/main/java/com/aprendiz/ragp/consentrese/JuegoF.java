@@ -1,7 +1,9 @@
 package com.aprendiz.ragp.consentrese;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -45,8 +47,7 @@ public class JuegoF extends AppCompatActivity {
     };
     int nivel = 4;
     int desde = 0;
-    String tipoJuego = "m";
-    TextView tvjuego, txtnombreJugador1, txtnombreJugador2, txtpuntuacionJugador1, txtpuntuacionJugador2, txtTiempo;
+    TextView  txtnombreJugador1, txtnombreJugador2, txtpuntuacionJugador1, txtpuntuacionJugador2, txtTiempo;
     int numeroMov = 0, pos1 = -1, pos2 = -1, canselec = 0, salir = 0;
     ImageView img1, img2;
     boolean bandera = true;
@@ -136,11 +137,13 @@ public class JuegoF extends AppCompatActivity {
             txtnombreJugador1.setTextColor(getColor(R.color.colorVerde));
             Toast.makeText(JuegoF.this, "Empieza jugador 1", Toast.LENGTH_SHORT).show();
             txtpuntuacionJugador1.setText("Puntuación: "+puntuacionJ1);
+            txtpuntuacionJugador2.setText("Puntuación: "+puntuacionJ2);
         }
 
         if (inicioJugador==2){
             txtnombreJugador2.setTextColor(getColor(R.color.colorVerde));
             Toast.makeText(JuegoF.this, "Empieza jugador 2", Toast.LENGTH_SHORT).show();
+            txtpuntuacionJugador1.setText("Puntuación: "+puntuacionJ1);
             txtpuntuacionJugador2.setText("Puntuación: "+puntuacionJ2);
         }
 
@@ -173,6 +176,10 @@ public class JuegoF extends AppCompatActivity {
         item.setImageBitmap(imagen);
         if (canselec == 2) {
             numeroMov++;
+            if (modo_juego==2){
+                txtTiempo.setText("Movimientos: "+numeroMov);
+            }
+
             new validarJuego().execute();
         }
     }
@@ -223,6 +230,7 @@ public class JuegoF extends AppCompatActivity {
                 }
 
                 if (salir==0){
+                    bandera=false;
                     AlertDialog.Builder builder = new AlertDialog.Builder(JuegoF.this);
                     LayoutInflater inflater = getLayoutInflater();
                     View view = inflater.inflate(R.layout.juego_terminado_layout, null);
@@ -248,6 +256,9 @@ public class JuegoF extends AppCompatActivity {
                         }
                     });
                     builder.setTitle("Juego terminado");
+
+
+                    insertarResultados();
                     builder.show();
 
                 }
@@ -276,6 +287,37 @@ public class JuegoF extends AppCompatActivity {
             pos1 = -1;
             pos2 = -1;
             gridJuego.setEnabled(true);
+
+        }
+
+        public void insertarResultados(){
+            GestorDB gestorDB = new GestorDB(JuegoF.this);
+            SQLiteDatabase db = gestorDB.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            Score score = new Score();
+            score.setNombre(txtnombreJugador1.getText().toString());
+            score.setDificultad(Integer.toString(nivel));
+            score.setModo(Integer.toString(modo_juego));
+            score.setPuntuacion(Integer.toString(puntuacionJ1));
+            contentValues.put("JUGADOR",score.getNombre());
+            contentValues.put("PUNTAJE",score.getPuntuacion());
+            contentValues.put("MODO",score.getModo());
+            contentValues.put("DIFICULTAD",score.getDificultad());
+            db.insert("PUNTUACION",null,contentValues);
+
+
+            contentValues = new ContentValues();
+            score = new Score();
+            score.setNombre(txtnombreJugador2.getText().toString());
+            score.setDificultad(Integer.toString(nivel));
+            score.setModo(Integer.toString(modo_juego));
+            score.setPuntuacion(Integer.toString(puntuacionJ2));
+            contentValues.put("JUGADOR",score.getNombre());
+            contentValues.put("PUNTAJE",score.getPuntuacion());
+            contentValues.put("MODO",score.getModo());
+            contentValues.put("DIFICULTAD",score.getDificultad());
+            db.insert("PUNTUACION",null,contentValues);
+
 
         }
 
@@ -334,7 +376,11 @@ public class JuegoF extends AppCompatActivity {
 
     private void tiempo() {
         final int[] segundos = {0};
-        txtTiempo.setText(Integer.toString(segundos[0]));
+        if (modo_juego==1){
+            txtTiempo.setText("Tiempo: "+(segundos[0]));
+        }else {
+            txtTiempo.setText("Movimientos: "+(segundos[0]));
+        }
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -349,8 +395,9 @@ public class JuegoF extends AppCompatActivity {
                         @Override
                         public void run() {
                             segundos[0] +=1;
-
-                            txtTiempo.setText(Integer.toString(segundos[0]));
+                            if (modo_juego==1){
+                                txtTiempo.setText("Tiempo: "+(segundos[0]));
+                            }
 
                         }
                     });

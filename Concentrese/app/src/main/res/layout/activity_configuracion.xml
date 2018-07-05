@@ -48,41 +48,7 @@
                     android:id="@+id/rbtnPuntuacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Puntuación"
-                    android:textColor="#FFF" />
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2">
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/rbtnFacil"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Facil"
-                    android:textColor="#FFF" />
-
-                <RadioButton
-                    android:id="@+id/rbtnMedio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Medio"
-                    android:textColor="#FFF" />
-
-                <RadioButton
-                    android:id="@+id/rbtnDificil"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Dificil"
+                    android:text="Movimientos"
                     android:textColor="#FFF" />
 
             </RadioGroup>
